@@ -62,3 +62,5 @@ poor weight distribution.
 * Organisation functions - are functions that help to better organise the weight
 trains. We can reorder wagons on a train or remove a wagon from a train.
 improperly loaded train.
+
+The project has its own makefile where all functions are explained but in Romanian language.
