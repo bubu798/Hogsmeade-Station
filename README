@@ -1,0 +1,48 @@
+open_train_station -> aloca memorie pentru noua gara, ii initializeaza numarul de peroane cu platforms_no si aloca memorie pentru fiecare
+			peron
+close_train_station -> pentru fiecare gara existenta elibereaza memorie pentru fiecare vagon al fiecarui tren existent, elibereaza
+			memoria pentru fiecare tren existent, si dupa elibereaza memoria pentru gara
+show_existing_trains -> prima data trece prin fiecare peron al garii date ca parametru si printeaza numarul acestuia; dupa, printeaza
+			in continuare puterea de tractiune a locomotivei trenului din peron, in cazul in care acesta exista; in final
+			printeaza greutatea fiecarui vagon al trenului cu minus in fata; printeaza toate acestea intr un fisier dat ca
+			parametru
+arrive_train -> trece prin toate peroanele garii pana ajunge la peronul cu numarul platform, iar daca acolo nu este niciun tren, aloca
+		memorie pentru un nou tren caruia ii initializeaza puterea de tractiune cu power
+leave_train -> la fel ca la functia anterioara trece prin toate peroanele garii date ca parametru, iar cand ajunge la peronul cu numarul
+		platform, daca acolo este deja un tren, ii elibereaza memoria
+add_train_car -> aloca memorie pentru un nou vagon, ii initializeaza greutatea cu weight care este dat ca parametru si ii face next-ul sa
+		pointeze catre NULL, intrucat vagonul se va adauga la finalul trenului. la fel ca la functiile anterioare trece prin
+		fiecare peron al garii pana ajunge la peronul platform; daca peronul nu este gol are 2 cazuri: primul este acela in care 
+		trenul nu are niciun vagon si in acest caz vom adauga vagonul pe prima pozitie, iar daca deja exista vagoane vom crea un 
+		pointer si-l vom face sa pointeze catre ultimul vagon existent in tren si ii facem next-ul sa fie noul vagon.
+remove_train_cars -> functia este asemanatoare cu add, doar ca de data asta trebuie sa eliberam memorie pentru un vagon care are 	
+			greutatea weight. trecem prin fiecare vagon al trenului dat cu 2 pointeri(unul tine vagon-ul care trebuie scos,
+			iar celalalt tine vagonul anterior; avem nevoie de anterior pentru a il lega de urmatorul vagon de dupa cel pe
+			care-l scoatem) dupa ce eliberam memoria pentru vagon-ul care trebuie scos, il legam pe cel anterior la urmatorul
+			asa cuma am explicat mai devreme. la final mai exista un caz in care nodul care trebuie scos este primul. in acest
+			caz facem vectorul pentru primul vagon (train_cars) sa pointeze catre urmatorul vagon
+move_train_cars -> initial luam 3 marje de eroare caz in care se iese din functie(daca ne cere sa mutam 0 masini, sau ni se dau pozitii 
+		egale cu 0, intrucat pozitiile vagoanelor incep de la 1); in continuare funtia seteaza 4 pointeri pe care i am descris in
+		comentariile functiei. mai avem 2 cazuri in care se iese din functie (cand primul vagon care trebuie mutat nu exista sau
+		cazul in care dorim sa mutam vagoanele incepand cu o pozitie inexistenta); vagoanele sunt mutate doar daca sunt cel putin 		
+		cars_no vagoane de la pozitia pos_a. in final este algoritmul efectiv care muta trenurile daca se trece de cazurile anterioare,
+		care este un loop care merge de cars_no ori(intrucat atatea vagoane vrem sa mutam) si la fiecare iteratie am comentat in cod
+		ce face ca sa nu lungesc prea mult aici. (sper ca e ok si ca ajuta comentariile) 
+find_express_train -> trece prin toate trenurile si la fiecare tren scade din puterea de tractiune a locomotivei greutatea fiecarui vagon
+			astfel calculand care are cea mai mare putere. trenul cu cea mai mare putere este retinut in max impreuna cu
+			numarul peronului pe care se afla. functia returneaza numarul peronului pe care se afla.
+find_overloaded_train -> trece prin fiecare tren si-i calculeaza greutatea totala a vagoanelor. daca aceasta este mai mare decat puterea 
+			de tractiune a locomotivei returneaza numarul peronului trenului. daca niciunul nu este supraincarcat returneaza -1
+find_optimal_train -> este asemanatoare cu find_express_train, doar ca aici cautam trenul cu cea mai mica putere care poate pleca din gara
+			acesta fiind salvat in min; functia returneaza peronul pe care se afla acest tren
+find_heaviest_sequence_train -> funtia are un curr, care retine trenul, un sequence care retine vagoanele, totalWeight care calculeaza
+				greutatea vagoanelor dintr-o secventa, max care retine cea mai mare greutate si count care calculeaza
+				cate vagoane are un tren. count ne va mai ajuta pentru a vedea daca mai sunt inca cars_no vagoane ramase
+				intr un tren, scazandu-l la fiecare iteratie. al doilea while este cel care calculeaza greutatea fiecarei
+				secvente in parte din fiecare tren. cand nu mai sunt vagoane ramase aceasta trece la urmatorul tren.
+				cea mai mare greutate este salvata in max. start_car va pointa catre primul vagon din secventa cu cea mai 
+				mare greutate, care mereu este tinut de curr. nrPeron va tine peronul pe care se gaseste trenul cu secventa
+				maxima. daca exista o secventa se va returna nrPeron, iar daca nu se va returna -1 iar start_car va fi NULL.
+
+
+		
