@@ -2,8 +2,7 @@
 
 ## Objective: 
 
-The objective of this topic is to understand and deepen lists and operations
-on lists.
+The objective of this topic is to better understand lists as data types and deepen the knowledge regarding the operations that can be done on them.
 
 ## Statement: 
 
