@@ -24,8 +24,8 @@ struct {
 
 2. ``Train`` is the structure that has a train. Each train consists of a locomotive and a
 sequence of wagons. The ``locomotive_power`` field the maximum size it can
-transport the locomotive. If the total weight of the wagons exceeds this value, the train does not
-will be able to leave the station. The ``train_cars`` field the first car in the train sequence a
+transport the locomotive. If the total weight of the wagons exceeds this value, the train 
+will not be able to leave the station. The ``train_cars`` field is the first train car of
 the train (it is the wagon attached to the locomotive).
 
 ```
@@ -36,7 +36,7 @@ struct {
 ```
 
 3. ``TrainCar`` is the structure that has a carriage. Each wagon has an associated weight which
-is retained in the weight field. Next field the next carriage in the sequence of
+is retained in the ``weight`` field. ``next`` field represents the next carriage in the sequence of
 train cars.
 
 ```
@@ -48,13 +48,13 @@ struct {
 
 We will implement 3 types of functions for Hogsmeade station:
 
-* operating functions - these are functions that change the structure of trains on the platforms. We can
+* operating functions - functions that change the structure of trains on the platforms. We can
 add or remove a train from a platform, add carriages or
 remove wagons from a train.
-* Search functions - are functions that help find trains with certain characteristics.
+* Search functions - functions that help find trains with certain characteristics.
 We can search for the fastest, best loaded, improperly loaded or with
 poor weight distribution.
-* Organisation functions - are functions that help to better organise the weight
+* Organisation functions - functions that help to better organise the weight
 trains. We can reorder wagons on a train or remove a wagon from a train.
 improperly loaded train.
 
